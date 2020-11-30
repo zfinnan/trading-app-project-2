@@ -3,6 +3,7 @@ const express = require('express');
 const layouts = require('express-ejs-layouts');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
+const axios = require('axios'); 
 const flash = require('connect-flash');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
@@ -50,6 +51,21 @@ app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', { alerts: res.locals.alerts });
 });
+
+app.get('/results', (req, res) => {
+  const query = req.query.q;
+  axios
+    .get(`https://v6.exchangerate-api.com/v6/a66b8aae93f6e7abafe3aab5/latest/${query}`)
+    .then(function (response) {
+      const currencyPair = `Conversion Rates for ${query}`;
+      console.log(response)
+      res.render('results', {
+        currencyPair,
+        results: response.data,
+      });
+    })
+});
+
 
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');

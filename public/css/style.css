@@ -5,5 +5,36 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
+  color: grey;
+  text-align: center;
+}
+
+
+body {
+  background: #F3F3F1;
+}
+
+.navBar {
+  background: rgb(219, 216, 216);
+  height: 50px;
+}
+
+header {
+  flex: inline;
+}
+
+.titleIcon {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.authentication {
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.searchBar {
+  text-align: center;
 }
