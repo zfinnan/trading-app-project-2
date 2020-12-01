@@ -1,20 +1,15 @@
 <h1><%= currencyPair %></h1>
+<div class="container">
 <ul>
-  <li>
     <div class="results">
-      <div class="base">
-        <span>Base:</span>
-        <span><%= results.base_code %></span><br>
-      </div>
       <div class="conversionRate">
-        <span>Conversion Rate:</span>
-        <span><%= JSON.stringify(results.conversion_rates) %></span><br>
+        <% let val_JSON = JSON.stringify(results.conversion_rates) %> 
+        <% const JSON2Str = jso => Object.entries(jso).reduce((s,[k,v],i)=>s + (i?',':'') + ` ${k}: ${v}`,'') %>
+        <span id="rateText"><%= JSON2Str(results.conversion_rates) %></span><br> 
       </div>
     </div>
-  </li>
 </ul> 
 
-<!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
     <div id="tradingview_90a82"></div>
     <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
@@ -38,6 +33,6 @@
     );
     </script>
   </div>
-  <!-- TradingView Widget END -->
 
+</div>
   <br>
