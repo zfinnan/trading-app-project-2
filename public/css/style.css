@@ -11,7 +11,8 @@ h1 {
 
 
 body {
-  background: #F3F3F1;
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .navBar {
@@ -25,6 +26,7 @@ header {
 
 .titleIcon {
   float: left;
+  font-size: 150%;
   margin-left: 20px;
   margin-top: 10px;
 }
@@ -35,7 +37,35 @@ header {
   margin-top: 10px;
 }
 
+.search {
+  font-size: 10;
+}
+
 .searchBar {
   text-align: center;
 }
 
+#searchBar {
+  height: 30px;
+  width: 300px;
+  border: 3px solid #00B4CC;
+  /* border-right: none; */
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+#searchBar:focus{
+  color: #00B4CC;
+}
+
+#submit {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+}

@@ -3,11 +3,11 @@
   <li>
     <div class="results">
       <div class="base">
-        <span>Base Pair:</span>
+        <span>Base:</span>
         <span><%= results.base_code %></span><br>
       </div>
       <div class="conversionRate">
-        <span>Conversion Rates:</span>
+        <span>Conversion Rate:</span>
         <span><%= JSON.stringify(results.conversion_rates) %></span><br>
       </div>
     </div>
@@ -24,7 +24,7 @@
     {
     "width": 980,
     "height": 610,
-    "symbol": "<%= results.base_code %>",
+    "symbol": "<%= results.base_code %> ",
     "interval": "D",
     "timezone": "Etc/UTC",
     "theme": "light",
