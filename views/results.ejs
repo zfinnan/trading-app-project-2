@@ -2,13 +2,14 @@
 <div class="container">
 <ul>
     <div class="results">
-      <div class="conversionRate">
+        <div class="conversionRate">
         <% let val_JSON = JSON.stringify(results.conversion_rates) %> 
         <% const JSON2Str = jso => Object.entries(jso).reduce((s,[k,v],i)=>s + (i?',':'') + ` ${k}: ${v}`,'') %>
         <span id="rateText"><%= JSON2Str(results.conversion_rates) %></span><br> 
-      </div>
+        </div>
     </div>
 </ul> 
+    
 
 <div class="tradingview-widget-container">
     <div id="tradingview_90a82"></div>

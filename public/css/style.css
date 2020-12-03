@@ -37,6 +37,10 @@ header {
   margin-top: 10px;
 }
 
+.login {
+  display: inline;
+}
+
 .search {
   font-size: 10;
 }
@@ -71,3 +75,21 @@ header {
   border-radius: 0 5px 5px 0;
 }
 
+.postSection {
+  display: inline-block;
+  text-align: center;
+  border: 2px solid gray;
+  padding: 2px;
+}
+
+#postText {
+  width: 250px;
+}
+
+#postSubmit {
+  background: green;
+}
+
+#inputFile {
+  margin: auto;
+}

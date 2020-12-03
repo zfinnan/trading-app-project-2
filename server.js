@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
+const multer = require('multer');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const axios = require('axios'); 
@@ -8,6 +9,7 @@ const flash = require('connect-flash');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 const app = express();
+const uploads = multer({ dest: './uploads'});
 
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -51,6 +53,22 @@ app.get('/', (req, res) => {
   console.log(res.locals.alerts);
   res.render('index', { alerts: res.locals.alerts });
 });
+
+app.post('/', uploads.single('inputFile'), (req, res) => {
+  console.log('On POST route');
+
+  // get an input from user
+  let file = req.file.path;
+  console.log(file);
+
+  cloudinary.uploader.upload(file, (result) => {
+    console.log(result);
+
+    // Render result page with image
+    res.render('index', { image: result.url });
+
+  })
+})
 
 app.get('/results', (req, res) => {
   const query = req.query.q;

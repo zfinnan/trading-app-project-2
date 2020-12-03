@@ -29,7 +29,7 @@
       <nav class="searchBar">
         <div class="search">
           <form action="/results" method="GET">
-              <input type="text" name="q" id="searchBar" placeholder="Search: (e.g. USD, JPY, GBP)"><button type="submit" id='submit'><i class="fa fa-search"></i></button>
+              <input type="text" oninput="this.value = this.value.toUpperCase()" name="q" id="searchBar" placeholder="Search: (e.g. USD, EUR, GBP)"><button type="submit" id='submit'><i class="fa fa-search"></i></button>
           </form>
       </div>
       </nav>
