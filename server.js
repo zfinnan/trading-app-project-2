@@ -10,6 +10,7 @@ const SECRET_SESSION = process.env.SECRET_SESSION;
 console.log(SECRET_SESSION);
 const app = express();
 const uploads = multer({ dest: './uploads'});
+const cloudinary = require('cloudinary');
 
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -65,7 +66,7 @@ app.post('/', uploads.single('inputFile'), (req, res) => {
     console.log(result);
 
     // Render result page with image
-    res.render('index', { image: result.url });
+    res.render('profile', { image: result.url });
 
   })
 })

@@ -34,7 +34,7 @@ header {
 .authentication {
   float: right;
   margin-right: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .login {
@@ -80,6 +80,7 @@ header {
   text-align: center;
   border: 2px solid gray;
   padding: 2px;
+  border-radius: 3%;
 }
 
 #postText {
@@ -93,3 +94,25 @@ header {
 #inputFile {
   margin: auto;
 }
+
+#icon {
+  width: 350px;
+  height: 150px;
+  border-radius: 5%;
+}
+
+.nav-item {
+  /* margin: auto; */
+  font-size: large;
+  margin-left: auto;
+  margin-right: auto;
+} 
+
+#profileH1 {
+  margin-bottom: 5px;
+}
+
+.postDisplay {
+
+}
+
