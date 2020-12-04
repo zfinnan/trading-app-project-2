@@ -19,8 +19,11 @@
       <nav class="titleIcon">
         <a href="/">Forex is Fun</a>
       </nav>
+      <nav class="newPost">
+        <a href="/newPost">Post</a>
+      </nav>
       <nav class="authentication">
-        <ul>
+        <ul class="drop_menu">
           <% if(!currentUser) { %>
             <li><a href="/auth/signup">Signup</a></li>
             <li><a href="/auth/login">Login</a></li>  

@@ -31,6 +31,12 @@ header {
   margin-top: 10px;
 }
 
+.newPost {
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
 .authentication {
   float: right;
   margin-right: 20px;
@@ -108,8 +114,9 @@ header {
   margin-right: auto;
 } 
 
-#profileH1 {
+#profileH2 {
   margin-bottom: 5px;
+  text-align: center;
 }
 
 .postDisplay {

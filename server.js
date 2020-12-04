@@ -11,6 +11,7 @@ console.log(SECRET_SESSION);
 const app = express();
 const uploads = multer({ dest: './uploads'});
 const cloudinary = require('cloudinary');
+let db = require('./models')
 
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
@@ -55,21 +56,41 @@ app.get('/', (req, res) => {
   res.render('index', { alerts: res.locals.alerts });
 });
 
-app.post('/', uploads.single('inputFile'), (req, res) => {
+app.get('/newPost', (req, res) => {
+  console.log(res.locals.alerts);
+  res.render('newPost', { alerts: res.locals.alerts });
+});
+
+app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
 
   // get an input from user
   let file = req.file.path;
   console.log(file);
 
+  
   cloudinary.uploader.upload(file, (result) => {
     console.log(result);
-
+        
+    db.post.create({
+          caption: req.body.title,
+          image_url: result.url,
+          userId: req.body.id
+        })
+        
     // Render result page with image
-    res.render('profile', { image: result.url });
-
-  })
+  }).then((post) => res.render('profile', { image: result.url }));
 })
+
+app.get('/profile', isLoggedIn, (req, res) => {
+  db.post.findAll()
+  .then((posts) => {
+    res.render('profile', { image: db.image_url });
+  })
+  .catch((error) => {
+    res.status(400).render('main/404')
+  })
+});
 
 app.get('/results', (req, res) => {
   const query = req.query.q;
@@ -83,11 +104,6 @@ app.get('/results', (req, res) => {
         results: response.data,
       });
     })
-});
-
-
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
 });
 
 app.use('/auth', require('./routes/auth'));
