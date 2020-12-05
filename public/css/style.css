@@ -123,3 +123,12 @@ header {
 
 }
 
+#images {
+  display: block;
+  margin: auto;
+  padding: 50px;
+}
+
+#deleteButton {
+  
+}

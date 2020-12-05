@@ -12,9 +12,12 @@ const app = express();
 const uploads = multer({ dest: './uploads'});
 const cloudinary = require('cloudinary');
 let db = require('./models')
+const methodOverride = require('method-override')
+
 
 // isLoggedIn middleware
 const isLoggedIn = require('./middleware/isLoggedIn');
+const post = require('./models/post');
 
 app.set('view engine', 'ejs');
 
@@ -22,6 +25,7 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+app.use(methodOverride('_method'))
 
 // secret: What we actually will be giving the user on our site as a session cookie
 // resave: Save the session even if it's modified, make this false
@@ -53,13 +57,41 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   console.log(res.locals.alerts);
-  res.render('index', { alerts: res.locals.alerts });
+  db.post.findAll()
+  .then((posts) => {
+    const postArray = posts.map(post => {
+      return post.get();
+    })
+    console.log(postArray);    
+    res.render('index', { posts: postArray });
+  })
 });
 
 app.get('/newPost', (req, res) => {
   console.log(res.locals.alerts);
   res.render('newPost', { alerts: res.locals.alerts });
 });
+
+app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
+  console.log('On POST route');
+
+  // get an input from user
+  let file = req.file.path;
+  console.log(file);
+
+  
+  cloudinary.uploader.upload(file, (result) => {
+    console.log(result);
+        
+    db.post.create({
+          caption: req.body.title,
+          image_url: result.url,
+          userId: req.body.id
+        })
+        
+    // Render result page with image
+  }).then((post) => res.render('index', { image: result.url }));
+})
 
 app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
@@ -79,18 +111,32 @@ app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
         })
         
     // Render result page with image
-  }).then((post) => res.render('profile', { image: result.url }));
+  }).then((post) => res.render('index', { image: result.url }));
 })
 
 app.get('/profile', isLoggedIn, (req, res) => {
+  console.log(res.locals.alerts);
   db.post.findAll()
   .then((posts) => {
-    res.render('profile', { image: db.image_url });
-  })
-  .catch((error) => {
-    res.status(400).render('main/404')
+    const postArray = posts.map(post => {
+      return post.get();
+    })
+    console.log(postArray);    
+    res.render('profile', { posts: postArray });
   })
 });
+
+// router.get('/:id', (req, res) => {
+//   db.post.findOne({
+//     include: [db.post],
+//     where: {id: req.params.id}
+//   }).then((author) => {
+//     res.render('authors/show', { author: author })
+//   }).catch((error) => {
+//     console.log(error)
+//     res.status(400).render('main/404')
+//   })
+// })
 
 app.get('/results', (req, res) => {
   const query = req.query.q;
@@ -105,6 +151,18 @@ app.get('/results', (req, res) => {
       });
     })
 });
+
+app.delete('/:id', isLoggedIn, (req, res) => {
+  const id = req.params.id
+  db.post.findOne({
+    where: { id }
+  }).then((foundPost) => {
+    foundPost.destroy().then(() => {
+      res.redirect('/')
+    })
+  })
+})
+
 
 app.use('/auth', require('./routes/auth'));
 

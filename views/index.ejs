@@ -1,4 +1,15 @@
 
 <h1 id="profileH1">Recent Ideas</h1>
-<!-- <img src="https://i.ytimg.com/vi/72EeweI6gpU/hqdefault.jpg" id="icon" alt=""> -->
+<br>
 
+
+<div>
+    <% posts.forEach(function(post) { %>
+        <h1></h1>
+        <img class="images" width="700px" height="500px" src="<%= post.image_url %>" alt="uploaded image"> 
+        <form action="/<%= post.id %>?_method=DELETE" method="POST">
+            <input id="deleteButton" class="btn-danger" type="submit" value="Remove idea" >
+        </form>
+        <br>
+    <% }) %>
+</div>
