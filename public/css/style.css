@@ -90,7 +90,7 @@ header {
 }
 
 #postText {
-  width: 250px;
+  width: 350px;
 }
 
 #postSubmit {
@@ -129,7 +129,25 @@ header {
 }
 
 #deleteButton {
-  border-radius: 3%;
+    border-radius: 5px;
+    border: 0;
+    width: 100px;
+    height:25px;
+    font-family: Tahoma;
+    background: rgb(206, 87, 87);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #9b4a4a 1%, #e72626 100%);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(top, #af3c3c 1%, #b82727 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #962525 1%, #d46262 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #bb2424 1%, #bb4f4f 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #bb4141 1%, #db5d5d 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#ededed', GradientType=0);
+    /* IE6-9 */
 }
 
 .post {
