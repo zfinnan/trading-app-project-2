@@ -49,7 +49,6 @@ app.use(flash());
 
 // Messages that will be accessible to every view
 app.use((req, res, next) => {
-  // Before every route, we will attach a user to res.local
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
   next();
@@ -75,21 +74,14 @@ app.get('/newPost', (req, res) => {
 app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
   console.log(req.body)
-
-  // get an input from user
   let file = req.file.path;
-  // console.log(file);
-
-  
   cloudinary.uploader.upload(file, (result) => {
-    // console.log(result);
-        
+    // console.log(result);   
     db.post.create({
         caption: req.body.caption,
         image_url: result.url,
         userId: req.body.id
-  })
-        
+  }) 
     // Render result page with image
   }).then((post) => res.redirect('/', { image: result.url }));
 })
@@ -112,23 +104,11 @@ app.get('/profile', isLoggedIn, (req, res) => {
   .then((posts) => {
     const postArray = posts.map(post => {
       return post.get();
-    })
-    // console.log(postArray);    
+    })   
     res.render('profile', { posts: postArray });
   })
 });
 
-// router.get('/:id', (req, res) => {
-//   db.post.findOne({
-//     include: [db.post],
-//     where: {id: req.params.id}
-//   }).then((author) => {
-//     res.render('authors/show', { author: author })
-//   }).catch((error) => {
-//     console.log(error)
-//     res.status(400).render('main/404')
-//   })
-// })
 
 app.get('/results', (req, res) => {
   const query = req.query.q;
