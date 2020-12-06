@@ -74,41 +74,43 @@ app.get('/newPost', (req, res) => {
 
 app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
+  console.log(req.body)
 
   // get an input from user
   let file = req.file.path;
-  console.log(file);
+  // console.log(file);
 
   
   cloudinary.uploader.upload(file, (result) => {
-    console.log(result);
+    // console.log(result);
+    
         
     db.post.create({
-          caption: req.body.title,
-          image_url: result.url,
-          userId: req.body.id
-        })
+        caption: req.body.caption,
+        image_url: result.url,
+        userId: req.body.id
+  })
         
     // Render result page with image
-  }).then((post) => res.render('index', { image: result.url }));
+  }).then((post) => res.redirect('index', { image: result.url }));
 })
 
 app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
-
+  // console.log(req.body)
   // get an input from user
   let file = req.file.path;
-  console.log(file);
+  // console.log(file);
 
   
   cloudinary.uploader.upload(file, (result) => {
-    console.log(result);
+    // console.log(result);
         
     db.post.create({
-          caption: req.body.title,
-          image_url: result.url,
-          userId: req.body.id
-        })
+        caption: req.body.caption,
+        image_url: result.url,
+        userId: req.body.id
+  })
         
     // Render result page with image
   }).then((post) => res.render('index', { image: result.url }));
@@ -121,7 +123,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
     const postArray = posts.map(post => {
       return post.get();
     })
-    console.log(postArray);    
+    // console.log(postArray);    
     res.render('profile', { posts: postArray });
   })
 });

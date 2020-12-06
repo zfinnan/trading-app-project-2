@@ -119,16 +119,36 @@ header {
   text-align: center;
 }
 
+#indexHeader {
+  font-size: 55px;
+}
+
 .postDisplay {
 
 }
 
-#images {
-  display: block;
-  margin: auto;
-  padding: 50px;
+.images {
+  margin-bottom: 3px;
+  border-radius: 1.5%;
 }
 
 #deleteButton {
-  
+  border-radius: 3%;
+}
+
+.post {
+  border: 2px solid lightgray;
+}
+
+#rateText {
+  font-size: 20px;
+}
+
+.results {
+  border: 2px solid lightgray;
+  color: black;
+}
+
+.postCaption {
+  color: black;
 }
