@@ -83,7 +83,6 @@ app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   
   cloudinary.uploader.upload(file, (result) => {
     // console.log(result);
-    
         
     db.post.create({
         caption: req.body.caption,
@@ -97,22 +96,13 @@ app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
 
 app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   console.log('On POST route');
-  // console.log(req.body)
-  // get an input from user
   let file = req.file.path;
-  // console.log(file);
-
-  
-  cloudinary.uploader.upload(file, (result) => {
-    // console.log(result);
-        
+  cloudinary.uploader.upload(file, (result) => {      
     db.post.create({
         caption: req.body.caption,
         image_url: result.url,
         userId: req.body.id
   })
-        
-    // Render result page with image
   }).then((post) => res.redirect('/', { image: result.url }));
 })
 
