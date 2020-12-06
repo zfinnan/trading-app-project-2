@@ -146,9 +146,18 @@ header {
 
 .results {
   border: 2px solid lightgray;
-  color: black;
+  color: rgb(123, 123, 175);
 }
 
 .postCaption {
   color: black;
+}
+
+#edit {
+  margin-left: 660px;
+}
+
+#updatePostText {
+  height: 30px;
+  width: 300px;
 }

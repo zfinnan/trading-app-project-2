@@ -163,8 +163,25 @@ app.delete('/:id', isLoggedIn, (req, res) => {
       res.redirect('/')
     })
   })
-})
+});
 
+app.get('/update', (req, res) => {
+  console.log(res.locals.alerts);
+  res.render('update', { alerts: res.locals.alerts });
+});
+
+// update caption
+app.put('/update', isLoggedIn, (req, res) => {
+  console.log('--- PUT route ---');
+  // const id = req.body.id
+  db.post.update({
+    caption: req.body.caption
+  }, {
+    where: { id: req.body.id }
+  }).then(() => {
+    res.redirect('/')
+  })
+})
 
 app.use('/auth', require('./routes/auth'));
 
