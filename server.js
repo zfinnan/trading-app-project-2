@@ -92,7 +92,7 @@ app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   })
         
     // Render result page with image
-  }).then((post) => res.redirect('index', { image: result.url }));
+  }).then((post) => res.redirect('/', { image: result.url }));
 })
 
 app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
@@ -113,7 +113,7 @@ app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
   })
         
     // Render result page with image
-  }).then((post) => res.render('index', { image: result.url }));
+  }).then((post) => res.redirect('/', { image: result.url }));
 })
 
 app.get('/profile', isLoggedIn, (req, res) => {
@@ -165,19 +165,22 @@ app.delete('/:id', isLoggedIn, (req, res) => {
   })
 });
 
-app.get('/update', (req, res) => {
-  console.log(res.locals.alerts);
-  res.render('update', { alerts: res.locals.alerts });
+app.get('/update/:id', (req, res) => {
+  db.post.findOne({
+     where: { id: req.params.id }
+  }).then((post) => {
+    res.render('update', { post });
+  })
 });
 
 // update caption
-app.put('/update', isLoggedIn, (req, res) => {
+app.put('/update/:id', isLoggedIn, (req, res) => {
   console.log('--- PUT route ---');
-  // const id = req.body.id
+  console.log(req.body)
   db.post.update({
     caption: req.body.caption
   }, {
-    where: { id: req.body.id }
+    where: { id: req.params.id }
   }).then(() => {
     res.redirect('/')
   })
