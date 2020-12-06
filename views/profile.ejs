@@ -1,4 +1,4 @@
-<h2>Trading Ideas</h2>
+<h2 id="profileHeader">Trading Ideas</h2>
 
 
 <div class="postDisplay">
@@ -8,12 +8,12 @@
 
 <ul class="nav nav-tabs">
     <li class="nav-item" id="myIdeas">
-      <a class="nav-link active" href="#">My Ideas</a>
+      <a class="profileSection" href="#">My Ideas</a>
       <div class="post">
         <% posts.forEach(function(post) { %>
           <div id="postCaption">
             <h1 class="postCaption"><%= post.caption %></h1>
-            <a id="edit" href="/update">Edit</a>
+            <a id="indexEdit" href="/update/<%= post.id %>">Edit</a>
           </div>
             <img class="images" width="700px" height="500px" src="<%= post.image_url %>" alt="uploaded image"> 
             <form action="/<%= post.id %>?_method=DELETE" method="POST">
@@ -24,7 +24,7 @@
     </div>
     </li>
     <li class="nav-item" id="savedIdeas">
-      <a class="nav-link" href="#">Saved Ideas</a>
+      <a class="profileSection" href="#">Saved Ideas</a>
     </li>
   </ul>
 

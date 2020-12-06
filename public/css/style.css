@@ -1,3 +1,7 @@
+* {
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
 nav ul li {
   text-decoration: none;
   display: inline-block;
@@ -26,7 +30,7 @@ header {
 
 .titleIcon {
   float: left;
-  font-size: 150%;
+  font-size: 200%;
   margin-left: 20px;
   margin-top: 10px;
 }
@@ -35,12 +39,14 @@ header {
   float: right;
   margin-right: 20px;
   margin-top: 20px;
+  font-size: 120%;
 }
 
 .authentication {
   float: right;
   margin-right: 20px;
   margin-top: 20px;
+  font-size: 120%;
 }
 
 .login {
@@ -53,6 +59,7 @@ header {
 
 .searchBar {
   text-align: center;
+  font-size: large;
 }
 
 #searchBar {
@@ -65,6 +72,7 @@ header {
   outline: none;
   color: #9DBFAF;
   margin-top: 10px;
+  font-size: large;
 }
 
 #searchBar:focus{
@@ -87,6 +95,7 @@ header {
   border: 2px solid gray;
   padding: 2px;
   border-radius: 3%;
+  font-size: 20px;
 }
 
 #postText {
@@ -95,10 +104,16 @@ header {
 
 #postSubmit {
   background: green;
+  font-size: 20px;
 }
 
 #inputFile {
   margin: auto;
+  margin-left: 0px;
+}
+
+#indexPostCaption {
+  font-size: 45px;
 }
 
 #icon {
@@ -121,6 +136,12 @@ header {
 
 #indexHeader {
   font-size: 55px;
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
+#indexEdit {
+  font-size: 17px;
+  margin-left: 660px;
 }
 
 .images {
@@ -152,6 +173,7 @@ header {
 
 .post {
   border: 2px solid lightgray;
+  background: #f5f5f5;
 }
 
 #rateText {
@@ -174,5 +196,30 @@ header {
 #updatePostText {
   height: 30px;
   width: 300px;
+  font-size: 15px;
 }
 
+#profileHeader {
+  font-size: 45px;
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
+.profileSection {
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+#resultsHeader{
+  font-size: 45px;
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
+#updateHeader{
+  font-size: 45px;
+  font-family: 'Pathway Gothic One', sans-serif;
+}
+
+#updateSubmit {
+  background: green;
+  font-size: 15px;
+}
