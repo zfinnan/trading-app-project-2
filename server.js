@@ -80,7 +80,7 @@ app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
     db.post.create({
         caption: req.body.caption,
         image_url: result.url,
-        userId: req.body.id
+        userId: req.user.id
   }) 
     // Render result page with image
   }).then((post) => res.redirect('/', { image: result.url }));
@@ -93,7 +93,7 @@ app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
     db.post.create({
         caption: req.body.caption,
         image_url: result.url,
-        userId: req.body.id
+        userId: req.user.id
   })
   }).then((post) => res.redirect('/', { image: result.url }));
 })
