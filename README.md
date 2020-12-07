@@ -5,6 +5,10 @@ Clone to local machine
 git clone https://github.com/zfinnan/trading-app-project-2.git
 cd into trading-app-project-2
 
+# Web Address
+
+https://forex-trading-application.herokuapp.com/ 
+
 # Technologies used and approaches taken
 
 The project uses the express framework for node.js to create a back end server in which users can sign up/login to the website in order to see current prices for currencies and post ideas for trades. 
