@@ -83,7 +83,7 @@ app.post('/newPost', isLoggedIn, uploads.single('inputFile'), (req, res) => {
         userId: req.user.id
   }) 
     // Render result page with image
-  }).then((post) => res.redirect('/', { image: result.url }));
+  }).then((post) => res.redirect('/'));
 })
 
 app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
@@ -95,7 +95,7 @@ app.post('/', isLoggedIn, uploads.single('inputFile'), (req, res) => {
         image_url: result.url,
         userId: req.user.id
   })
-  }).then((post) => res.redirect('/', { image: result.url }));
+  }).then((post) => res.redirect('/'));
 })
 
 app.get('/profile', isLoggedIn, (req, res) => {
