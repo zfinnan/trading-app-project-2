@@ -146,6 +146,7 @@ header {
 
 .images {
   margin-bottom: 3px;
+  border: 2px solid black;
   border-radius: 1.5%;
 }
 

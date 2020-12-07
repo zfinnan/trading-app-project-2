@@ -135,7 +135,7 @@ app.delete('/:id', isLoggedIn, (req, res) => {
   })
 });
 
-app.get('/update/:id', (req, res) => {
+app.get('/update/:id', isLoggedIn, (req, res) => {
   db.post.findOne({
      where: { id: req.params.id }
   }).then((post) => {
